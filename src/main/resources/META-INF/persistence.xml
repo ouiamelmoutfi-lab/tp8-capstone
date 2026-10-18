@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             version="2.2">
+
+    <persistence-unit name="ReservationPU"
+                      transaction-type="RESOURCE_LOCAL">
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Entités JPA -->
+        <class>com.example.model.Utilisateur</class>
+        <class>com.example.model.Salle</class>
+        <class>com.example.model.Reservation</class>
+
+        <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+
+        <properties>
+
+            <!-- Connexion MySQL -->
+            <property name="javax.persistence.jdbc.driver"
+                      value="com.mysql.cj.jdbc.Driver"/>
+
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/reservation_salles?createDatabaseIfNotExist=true"/>
+
+            <property name="javax.persistence.jdbc.user"
+                      value="ouiam1"/>
+
+            <property name="javax.persistence.jdbc.password"
+                      value="Ouiam2003@"/>
+
+            <!-- Configuration Hibernate -->
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.MySQL8Dialect"/>
+
+            <property name="hibernate.hbm2ddl.auto"
+                      value="update"/>
+
+            <property name="hibernate.show_sql"
+                      value="false"/>
+
+            <property name="hibernate.format_sql"
+                      value="true"/>
+
+            <!-- Cache de deuxième niveau -->
+            <property name="hibernate.cache.use_second_level_cache"
+                      value="true"/>
+
+            <property name="hibernate.cache.region.factory_class"
+                      value="org.hibernate.cache.jcache.JCacheRegionFactory"/>
+
+            <property name="hibernate.javax.cache.provider"
+                      value="org.ehcache.jsr107.EhcacheCachingProvider"/>
+
+            <property name="hibernate.javax.cache.missing_cache_strategy"
+                      value="create"/>
+
+            <property name="hibernate.use_sql_comments" value="true"/>
+            <property name="hibernate.session.events.log" value="false"/>
+
+            <!-- Cache des requêtes -->
+            <property name="hibernate.cache.use_query_cache"
+                      value="true"/>
+
+            <!-- Statistiques Hibernate -->
+            <property name="hibernate.generate_statistics"
+                      value="true"/>
+
+        </properties>
+
+    </persistence-unit>
+
+</persistence>
